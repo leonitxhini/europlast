@@ -180,7 +180,7 @@ export default function Technology() {
         </div>
       </section>
 
-      {/* ... (Rest des Codes bleibt gleich, nur den CTA unten angepasst) */}
+      {/* ... deine anderen Sections bleiben unverändert ... */}
 
       {/* CTA Section */}
       <section className="py-20">
@@ -201,23 +201,24 @@ export default function Technology() {
               goals.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link href="/contact" passHref legacyBehavior>
-                <Button
-                  asChild
-                  size="lg"
-                  className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
-                >
-                  <a>
-                    Discuss Your Project
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </Link>
-              <Link href="/products" passHref legacyBehavior>
-                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
-                  <a>Explore Products</a>
-                </Button>
-              </Link>
+              <Button
+                asChild
+                size="lg"
+                className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
+              >
+                <Link href="/contact">
+                  Discuss Your Project
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto"
+              >
+                <Link href="/products">Explore Products</Link>
+              </Button>
             </div>
           </motion.div>
         </div>
