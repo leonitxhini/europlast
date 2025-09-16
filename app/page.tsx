@@ -25,6 +25,7 @@ import {
   Layers,
   Cpu
 } from 'lucide-react';
+import HeroProcess from '@/components/HeroProcess';
 
 // Dynamic imports for client-only components
 const EnhancedCard = dynamic(() => import('@/components/ui/enhanced-card').then(mod => ({ default: mod.EnhancedCard })), { ssr: false });
@@ -79,147 +80,13 @@ const certifications = [
 ];
 
 export default function Home() {
-  const [heroRef, heroInView] = useInView({ threshold: 0.1 });
   const [statsRef, statsInView] = useInView({ threshold: 0.3 });
   const [productsRef, productsInView] = useInView({ threshold: 0.1 });
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      >
-        {/* Dynamic Gradient Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="gradient-mesh absolute inset-0" />
-          <ParticleSystem count={80} />
-          
-          {/* Morphing Blobs */}
-          <div className="absolute top-20 left-20">
-            <MorphingBlob size={300} color="from-blue-500/10 to-purple-500/10" />
-          </div>
-          <div className="absolute bottom-20 right-20">
-            <MorphingBlob size={250} color="from-teal-500/10 to-cyan-500/10" />
-          </div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <MorphingBlob size={400} color="from-purple-500/5 to-pink-500/5" />
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-            >
-              <Badge variant="outline" className="mb-6 px-6 py-3 text-sm glass border-white/30 backdrop-blur-xl">
-                <Sparkles className="w-4 h-4 mr-2 text-red-500" />
-                Premium Plastic Solutions Since 2005
-              </Badge>
-            </motion.div>
-
-            <motion.h1
-              className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="flex items-center justify-center mb-6">
-                <Image
-                  src="/EUROPLAST_LOGO_BLACK.png"
-                  alt="Europlast Logo"
-                  width={400}
-                  height={120}
-                  className="object-contain dark:invert"
-                />
-              </div>
-              <TextReveal className="shimmer text-5xl sm:text-7xl lg:text-8xl font-bold">
-                Protect your goods with our plastic film
-              </TextReveal>
-              <TextReveal className="block gradient-text mt-4 text-5xl sm:text-7xl lg:text-8xl font-bold" delay={0.5}>
-                from Kosovo
-              </TextReveal>
-            </motion.h1>
-
-            <motion.p
-              className="text-xl sm:text-2xl text-muted-foreground/80 mb-12 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Since 2005, we've been manufacturing premium plastic packaging solutions for food, agriculture, and industrial applications across Europe.
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Link href="/products">
-                <MagneticButton>
-                  <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-0">
-                    View Products
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </MagneticButton>
-              </Link>
-              <Link href="/contact">
-                <MagneticButton>
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-red-600 text-red-600 hover:bg-red-600 hover:text-white">
-                    Contact Us
-                  </Button>
-                </MagneticButton>
-              </Link>
-            </motion.div>
-            
-            {/* Enhanced Floating Elements */}
-            <div className="absolute top-20 left-10 hidden lg:block">
-              <motion.div
-                className="w-20 h-20 glass rounded-3xl flex items-center justify-center backdrop-blur-xl border border-red-200/30"
-                animate={{ 
-                  y: [-15, 15, -15], 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ duration: 6, repeat: Infinity }}
-              >
-                <Layers className="w-10 h-10 text-red-500" />
-              </motion.div>
-            </div>
-            
-            <div className="absolute top-32 right-10 hidden lg:block">
-              <motion.div
-                className="w-24 h-24 glass rounded-full flex items-center justify-center backdrop-blur-xl border border-white/30"
-                animate={{ 
-                  y: [15, -15, 15], 
-                  rotate: [0, -10, 10, 0],
-                  scale: [1, 0.9, 1.1, 1]
-                }}
-                transition={{ duration: 8, repeat: Infinity, delay: 2 }}
-              >
-                <Cpu className="w-12 h-12 text-gray-700" />
-              </motion.div>
-            </div>
-            
-            <div className="absolute bottom-20 left-1/4 hidden lg:block">
-              <motion.div
-                className="w-16 h-16 glass rounded-2xl flex items-center justify-center backdrop-blur-xl border border-white/30"
-                animate={{ 
-                  y: [-10, 20, -10], 
-                  x: [-5, 5, -5],
-                  rotate: [0, 15, -15, 0]
-                }}
-                transition={{ duration: 7, repeat: Infinity, delay: 1 }}
-              >
-                <Package className="w-8 h-8 text-red-600" />
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Process Section */}
+      <HeroProcess />
 
       {/* Enhanced Stats Section with Parallax */}
       <ParallaxSection speed={0.3}>

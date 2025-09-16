@@ -9,6 +9,7 @@ import { ClientOnly } from '@/components/client-only';
 import { FloatingDock } from '@/components/ui/floating-dock';
 import { InteractiveCursor } from '@/components/ui/interactive-cursor';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
+import ImageReveal from '@/components/ImageReveal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -61,21 +62,23 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <div className="min-h-screen bg-background">
+          <ImageReveal>
+            <div className="min-h-screen bg-background">
+              <ClientOnly>
+                <ScrollProgress />
+                <InteractiveCursor />
+              </ClientOnly>
+              <Navigation />
+              <main>{children}</main>
+              <Footer />
+              <ClientOnly>
+                <FloatingDock />
+              </ClientOnly>
+            </div>
             <ClientOnly>
-              <ScrollProgress />
-              <InteractiveCursor />
+              <Toaster />
             </ClientOnly>
-            <Navigation />
-            <main>{children}</main>
-            <Footer />
-            <ClientOnly>
-              <FloatingDock />
-            </ClientOnly>
-          </div>
-          <ClientOnly>
-            <Toaster />
-          </ClientOnly>
+          </ImageReveal>
         </ThemeProvider>
       </body>
     </html>
