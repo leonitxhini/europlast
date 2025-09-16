@@ -92,7 +92,6 @@ export default function StatsSection() {
                       <AnimatedCounter 
                         value={stat.number} 
                         duration={2}
-                        delay={index * 0.2}
                       />
                     ) : (
                       stat.number
