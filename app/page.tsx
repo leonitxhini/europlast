@@ -26,6 +26,7 @@ import {
   Cpu
 } from 'lucide-react';
 import HeroProcess from '@/components/HeroProcess';
+import StatsSection from '@/components/StatsSection';
 
 // Dynamic imports for client-only components
 const EnhancedCard = dynamic(() => import('@/components/ui/enhanced-card').then(mod => ({ default: mod.EnhancedCard })), { ssr: false });
@@ -65,12 +66,6 @@ const products = [
   },
 ];
 
-const stats = [
-  { label: 'Years Experience', value: 20, suffix: '+', icon: TrendingUp },
-  { label: 'Happy Clients', value: 150, suffix: '+', icon: Users },
-  { label: 'Quality Guarantee', value: 100, suffix: '%', icon: Award },
-  { label: 'Countries Served', value: 25, suffix: '+', icon: Globe },
-];
 
 const certifications = [
   { name: 'ISO 9001', description: 'Quality Management' },
@@ -80,7 +75,6 @@ const certifications = [
 ];
 
 export default function Home() {
-  const [statsRef, statsInView] = useInView({ threshold: 0.3 });
   const [productsRef, productsInView] = useInView({ threshold: 0.1 });
 
   return (
@@ -88,83 +82,8 @@ export default function Home() {
       {/* Hero Process Section */}
       <HeroProcess />
 
-      {/* Enhanced Stats Section with Parallax */}
-      <ParallaxSection speed={0.3}>
-        <section ref={statsRef} className="py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-red-50/80 via-gray-50/60 to-red-50/80 dark:from-red-950/30 dark:via-gray-950/20 dark:to-red-950/30" />
-          <ParticleSystem count={50} />
-          
-          {/* Animated Background Elements */}
-          <div className="absolute top-10 left-10">
-            <motion.div
-              className="w-32 h-32 bg-gradient-to-r from-red-500/10 to-gray-500/10 rounded-full blur-xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
-          </div>
-          <div className="absolute bottom-10 right-10">
-            <motion.div
-              className="w-40 h-40 bg-gradient-to-r from-red-500/10 to-gray-500/10 rounded-full blur-xl"
-              animate={{
-                scale: [1.2, 1, 1.2],
-                opacity: [0.6, 0.3, 0.6]
-              }}
-              transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-            />
-          </div>
-          
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 50, rotateY: -90 }}
-                    animate={statsInView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                  >
-                    <Card3D>
-                      <EnhancedCard className="text-center p-10 group h-full" hover magnetic glow>
-                        <div className="space-y-8">
-                          <div className="relative">
-                            <motion.div 
-                              className="w-20 h-20 bg-gradient-to-r from-red-600 via-red-700 to-gray-800 rounded-3xl flex items-center justify-center mx-auto group-hover:scale-125 transition-all duration-500 shadow-2xl"
-                              whileHover={{ rotateY: 180 }}
-                              transition={{ duration: 0.6 }}
-                            >
-                              <Icon className="w-10 h-10 text-white" />
-                            </motion.div>
-                            <motion.div
-                              className="absolute inset-0 w-20 h-20 bg-gradient-to-r from-gray-800 via-red-700 to-red-600 rounded-3xl flex items-center justify-center mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                              style={{ rotateY: 180 }}
-                            >
-                              <Sparkles className="w-10 h-10 text-white" />
-                            </motion.div>
-                          </div>
-                          <div>
-                            <div className="text-5xl font-bold gradient-text mb-3">
-                              <AnimatedCounter 
-                                value={stat.value} 
-                                suffix={stat.suffix}
-                                className="text-5xl font-bold gradient-text"
-                              />
-                            </div>
-                            <p className="text-lg text-muted-foreground font-medium">{stat.label}</p>
-                          </div>
-                        </div>
-                      </EnhancedCard>
-                    </Card3D>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      </ParallaxSection>
+      {/* New Stats Section */}
+      <StatsSection />
 
       {/* Enhanced Products Preview with 3D Cards */}
       <section ref={productsRef} className="py-32 relative">
