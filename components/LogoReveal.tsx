@@ -27,7 +27,7 @@ export default function LogoReveal({ children }: LogoRevealProps) {
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-white via-gray-100 to-gray-200"
+            className="fixed inset-0 z-50 flex items-center justify-center"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{
@@ -35,9 +35,11 @@ export default function LogoReveal({ children }: LogoRevealProps) {
               ease: "easeOut"
             }}
           >
+            {/* Blurred background with website content */}
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-md" />
             {/* Logo mit Animation - Handy-optimiert */}
             <motion.div
-              className="flex items-center justify-center px-4 sm:px-6 md:px-8"
+              className="relative z-10 flex items-center justify-center px-4 sm:px-6 md:px-8"
               initial={{ scale: 0, opacity: 0, rotate: -180 }}
               animate={{ scale: 1, opacity: 1, rotate: 0 }}
               exit={{ scale: 0.8, opacity: 0, rotate: 45 }}
@@ -52,39 +54,14 @@ export default function LogoReveal({ children }: LogoRevealProps) {
                   alt="Europlast Logo"
                   width={300}
                   height={150}
-                  className="object-contain w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl"
+                  className="object-contain w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl drop-shadow-2xl"
                   priority
                 />
-                {/* Glow Effekt */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-blue-500/20 rounded-lg blur-2xl scale-110" />
-                
-                {/* Schatten für besseren Kontrast */}
-                <div className="absolute inset-0 bg-black/10 rounded-lg shadow-2xl" />
+                {/* Subtiler Glow Effekt */}
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-blue-500/10 rounded-lg blur-xl scale-110" />
               </div>
             </motion.div>
 
-            {/* Subtile Partikel im Hintergrund - Handy-optimiert */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(15)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-gray-400/30 rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [0, -15, 0],
-                    opacity: [0.2, 0.6, 0.2],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                  }}
-                />
-              ))}
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
