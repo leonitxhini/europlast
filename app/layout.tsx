@@ -9,7 +9,7 @@ import { ClientOnly } from '@/components/client-only';
 import { FloatingDock } from '@/components/ui/floating-dock';
 import { InteractiveCursor } from '@/components/ui/interactive-cursor';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
-import ImageReveal from '@/components/ImageReveal';
+import LogoReveal from '@/components/LogoReveal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -62,7 +62,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <ImageReveal>
+          <LogoReveal>
             <div className="min-h-screen bg-background">
               <ClientOnly>
                 <ScrollProgress />
@@ -78,7 +78,7 @@ export default function RootLayout({
             <ClientOnly>
               <Toaster />
             </ClientOnly>
-          </ImageReveal>
+          </LogoReveal>
         </ThemeProvider>
       </body>
     </html>
