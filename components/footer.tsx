@@ -42,9 +42,9 @@ export function Footer() {
   return (
     <footer className="bg-muted/30 border-t border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* Brand Section */}
-          <div className="lg:col-span-2 space-y-3 sm:space-y-4">
+          <div className="lg:w-2/5 space-y-3 sm:space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <div className="relative">
                 <Image
@@ -104,25 +104,27 @@ export function Footer() {
           </div>
 
           {/* Links Sections - Always horizontal */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category} className="space-y-3 sm:space-y-4">
-              <h3 className="font-semibold text-foreground capitalize text-sm sm:text-base">
-                {category === 'company' ? 'Company' : category === 'products' ? 'Products' : 'Support'}
-              </h3>
-              <ul className="space-y-1.5 sm:space-y-2">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="lg:w-3/5 grid grid-cols-3 gap-6 sm:gap-8">
+            {Object.entries(footerLinks).map(([category, links]) => (
+              <div key={category} className="space-y-3 sm:space-y-4">
+                <h3 className="font-semibold text-foreground capitalize text-sm sm:text-base">
+                  {category === 'company' ? 'Company' : category === 'products' ? 'Products' : 'Support'}
+                </h3>
+                <ul className="space-y-1.5 sm:space-y-2">
+                  {links.map((link) => (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Newsletter Section */}
