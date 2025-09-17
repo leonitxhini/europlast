@@ -103,26 +103,28 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links Sections */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category} className="space-y-3 sm:space-y-4">
-              <h3 className="font-semibold text-foreground capitalize text-sm sm:text-base">
-                {category === 'company' ? 'Company' : category === 'products' ? 'Products' : 'Support'}
-              </h3>
-              <ul className="space-y-1.5 sm:space-y-2">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Links Sections - Horizontal layout on mobile */}
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+            {Object.entries(footerLinks).map(([category, links]) => (
+              <div key={category} className="space-y-3 sm:space-y-4">
+                <h3 className="font-semibold text-foreground capitalize text-sm sm:text-base">
+                  {category === 'company' ? 'Company' : category === 'products' ? 'Products' : 'Support'}
+                </h3>
+                <ul className="space-y-1.5 sm:space-y-2">
+                  {links.map((link) => (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Newsletter Section */}
