@@ -39,7 +39,7 @@ export default function HeroProcess() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-12 md:py-16"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16"
     >
       {/* Dynamic Gradient Background */}
       <div className="absolute inset-0 overflow-hidden">

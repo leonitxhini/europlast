@@ -86,7 +86,7 @@ export default function Home() {
       <StatsSection />
 
       {/* Enhanced Products Preview with 3D Cards */}
-      <section ref={productsRef} className="py-16 sm:py-20 md:py-24 lg:py-32 relative">
+      <section ref={productsRef} className="pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24 lg:pb-32 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent" />
         <ParticleSystem count={20} />
         
